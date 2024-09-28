@@ -2,25 +2,18 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: {
-    index: "./script.js", // Точка входа для index.html
-    main: "./main.js", // Точка входа для main.html
-  },
+  entry: "./script.js",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].bundle.js",
     clean: true,
   },
+  resolve: {
+    extensions: [".js", ".css"],
+  },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: "index.html", // Имя выходного HTML-файла
-      template: "./index.html", // Шаблон для index.html
-      chunks: ["index"], // Подключение бандла 'index.bundle.js'
-    }),
-    new HtmlWebpackPlugin({
-      filename: "main.html", // Имя выходного HTML-файла
-      template: "./main.html", // Шаблон для main.html
-      chunks: ["main"], // Подключение бандла 'main.bundle.js'
+      template: path.join(__dirname, "index.html"),
     }),
   ],
   module: {
@@ -32,6 +25,10 @@ module.exports = {
       {
         test: /.(png|svg|jpe?g|gif)$/i,
         type: "asset/resource",
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
       },
     ],
   },
