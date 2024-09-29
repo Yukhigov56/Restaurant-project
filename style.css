@@ -7,6 +7,16 @@
   font-family: "Rubik", sans-serif;
 }
 
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
 :root {
   --color-white: #fff;
   --color-yellow: #ff9100;
