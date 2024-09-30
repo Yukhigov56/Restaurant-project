@@ -24,11 +24,19 @@ export function createWelcomePage() {
   inputDiv.appendChild(input);
   inputDiv.appendChild(lupaImg);
 
-  const cartDiv = document.createElement("div");
-  cartDiv.className = "section-paragraph";
-  const cartP = document.createElement("p");
-  cartP.textContent = "Корзина";
-  const cartImg = document.createElement("img");
+  const cartDiv = document.createElement('div');
+  cartDiv.className = 'section-paragraph';
+  const cartP = document.createElement('p');
+  cartP.classList = 'basketIcon';
+  const basketHrf = [{ text: 'Koрзина', href: 'basket.js' }]
+  basketHrf.forEach( link => {
+    const a = document.createElement('a');
+    a.href = link.href;
+    a.textContent = link.text;
+    cartP.appendChild(a);
+  });
+  const cartImg = document.createElement('img');
+
   cartImg.src = cartIcon;
   cartDiv.appendChild(cartP);
   cartDiv.appendChild(cartImg);
@@ -41,25 +49,30 @@ export function createWelcomePage() {
   button.appendChild(fireImg);
   button.appendChild(document.createTextNode("АКЦИИ"));
   btnDiv.appendChild(button);
-
+  
   section.appendChild(inputDiv);
   section.appendChild(cartDiv);
   section.appendChild(btnDiv);
 
   // Создание main
-  const main = document.createElement("main");
+  const main = document.createElement('main');
 
-  const mainLeft = document.createElement("div");
-  mainLeft.className = "main-left";
-  const h1 = document.createElement("h1");
-  h1.textContent = "Эксклюзивное меню на ваш вкус";
-  const p = document.createElement("p");
-  p.textContent = "Смотреть все меню";
-  const btn = document.createElement("button");
-  btn.className = "btn-main-left";
-  btn.textContent = "АКЦИИ НА СЕГОДНЯ";
+  const mainLeft = document.createElement('div');
+  mainLeft.className = 'main-left';
+  const h1 = document.createElement('h1');
+  h1.textContent = 'Эксклюзивное';
+  const h11 = document.createElement('h2');
+  h11.textContent = 'меню на ваш вкус';
+  const p = document.createElement('p');
+  p.textContent = 'Смотреть все меню';
+  const btn = document.createElement('button');
+  btn.className = 'btn-main-left';
+  
+  btn.textContent = 'АКЦИИ НА СЕГОДНЯ';
+
 
   mainLeft.appendChild(h1);
+  mainLeft.appendChild(h11);
   mainLeft.appendChild(p);
   mainLeft.appendChild(btn);
 

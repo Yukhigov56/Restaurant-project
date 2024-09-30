@@ -5,10 +5,11 @@ import { createFooter } from "../components/footer";
 export function showLoadingScreen() {
   const app = document.getElementById("app");
   if (app) {
-    app.innerHTML = ""; // Очищаем содержимое
-    const loadingDiv = document.createElement("div");
-    loadingDiv.textContent = "Загрузка..."; // Текст или анимация загрузки
-    loadingDiv.className = "loading"; // Добавляем стили для экрана загрузки
+    app.innerHTML = ''; // Очищаем содержимое
+    const loadingDiv = document.createElement('div');
+    loadingDiv.textContent = 'ZIRA'; // Текст или анимация загрузки
+    loadingDiv.className = 'loading'; // Добавляем стили для экрана загрузки
+
     app.appendChild(loadingDiv);
   }
 }
@@ -18,7 +19,7 @@ export async function renderPage(pageContent, setupNavigation, activePage) {
   showLoadingScreen();
 
   // Имитация загрузки (например, можно сделать реальный запрос на сервер тут)
-  await new Promise((resolve) => setTimeout(resolve, 500)); // Задержка 500ms
+  await new Promise((resolve) => setTimeout(resolve, 800)); // Задержка 800ms
 
   const app = document.getElementById("app");
   if (app) {
