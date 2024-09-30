@@ -1,25 +1,25 @@
-import lupaIcon from '../../images/section lupa.png';
-import cartIcon from '../../images/section korzina.png';
-import fireIcon from '../../images/fire icon.png';
+import lupaIcon from "../../images/section lupa.png";
+import cartIcon from "../../images/section korzina.png";
+import fireIcon from "../../images/fire icon.png";
 
-import menImg from '../../images/main men.png';
-import stakeImg from '../../images/main stake.png';
-import saladImg from '../../images/main salat.png';
-import pinkImg from '../../images/mainPink.png';
-import coffeeImg from '../../images/mainCoffe.png';
-import vineImg from '../../images/MainVine.png';
+import menImg from "../../images/main men.png";
+import stakeImg from "../../images/main stake.png";
+import saladImg from "../../images/main salat.png";
+import pinkImg from "../../images/mainPink.png";
+import coffeeImg from "../../images/mainCoffe.png";
+import vineImg from "../../images/MainVine.png";
 
 import "../../style.css";
 
 export function createWelcomePage() {
   // Создание section
-  const section = document.createElement('section');
+  const section = document.createElement("section");
 
-  const inputDiv = document.createElement('div');
-  inputDiv.className = 'section-input';
-  const input = document.createElement('input');
-  input.type = 'text';
-  const lupaImg = document.createElement('img');
+  const inputDiv = document.createElement("div");
+  inputDiv.className = "section-input";
+  const input = document.createElement("input");
+  input.type = "text";
+  const lupaImg = document.createElement("img");
   lupaImg.src = lupaIcon;
   inputDiv.appendChild(input);
   inputDiv.appendChild(lupaImg);
@@ -36,17 +36,18 @@ export function createWelcomePage() {
     cartP.appendChild(a);
   });
   const cartImg = document.createElement('img');
+
   cartImg.src = cartIcon;
   cartDiv.appendChild(cartP);
   cartDiv.appendChild(cartImg);
 
-  const btnDiv = document.createElement('div');
-  btnDiv.className = 'section-btn';
-  const button = document.createElement('button');
-  const fireImg = document.createElement('img');
+  const btnDiv = document.createElement("div");
+  btnDiv.className = "section-btn";
+  const button = document.createElement("button");
+  const fireImg = document.createElement("img");
   fireImg.src = fireIcon;
   button.appendChild(fireImg);
-  button.appendChild(document.createTextNode('АКЦИИ'));
+  button.appendChild(document.createTextNode("АКЦИИ"));
   btnDiv.appendChild(button);
   
   section.appendChild(inputDiv);
@@ -69,19 +70,20 @@ export function createWelcomePage() {
   
   btn.textContent = 'АКЦИИ НА СЕГОДНЯ';
 
+
   mainLeft.appendChild(h1);
   mainLeft.appendChild(h11);
   mainLeft.appendChild(p);
   mainLeft.appendChild(btn);
 
-  const mainRight = document.createElement('div');
-  mainRight.className = 'main-right';
+  const mainRight = document.createElement("div");
+  mainRight.className = "main-right";
   const imgList = [menImg, stakeImg, saladImg, pinkImg, coffeeImg, vineImg];
-  const ul = document.createElement('ul');
+  const ul = document.createElement("ul");
 
-  imgList.forEach(src => {
-    const li = document.createElement('li');
-    const img = document.createElement('img');
+  imgList.forEach((src) => {
+    const li = document.createElement("li");
+    const img = document.createElement("img");
     img.src = src;
     li.appendChild(img);
     ul.appendChild(li);
@@ -93,7 +95,7 @@ export function createWelcomePage() {
   main.appendChild(mainRight);
 
   // Возвращаем полный документ
-  const pageContainer = document.createElement('div');
+  const pageContainer = document.createElement("div");
   pageContainer.appendChild(section);
   pageContainer.appendChild(main);
 
