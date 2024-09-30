@@ -1,12 +1,12 @@
-import { createWelcomePage } from '../pages/welcome/welcomePage';
-import { createShopPage } from '../pages/shop/shopPage';
-import { Router } from './router';
-import { renderPage } from '../utils/renderPage';
+import { createWelcomePage } from "../pages/welcome/welcomePage";
+import { createShopPage } from "../pages/shop/shopPage";
+import { Router } from "./router";
+import { renderPage } from "../utils/renderPage";
 
 // Определяем маршруты в массиве
 const routes = [
-  { path: '/', page: createWelcomePage },
-  { path: '/shop', page: createShopPage },
+  { path: "/", page: createWelcomePage },
+  { path: "/shop", page: createShopPage },
 ];
 
 const router = new Router();
@@ -21,12 +21,12 @@ const setupRoutes = () => {
 // Функция для установки навигации
 const setupNavigation = () => {
   const navItems = [
-    { id: 'nav-home', path: '/' },
-    { id: 'nav-menu', path: '/shop' },
+    { id: "nav-home", path: "/" },
+    { id: "nav-menu", path: "/shop" },
   ];
 
   navItems.forEach(({ id, path }) => {
-    document.getElementById(id).addEventListener('click', (e) => {
+    document.getElementById(id).addEventListener("click", (e) => {
       e.preventDefault();
       router.navigate(path);
     });
