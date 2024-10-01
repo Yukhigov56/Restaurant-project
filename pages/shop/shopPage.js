@@ -162,7 +162,8 @@ export function createShopPage() {
     }
   ];
   
-  
+  let cartCount = 0; 
+
   dataFut.forEach((card) => {
     const cardElement = document.createElement("div");
     cardElement.className = "card";
@@ -192,14 +193,13 @@ export function createShopPage() {
     btnText.className = "btn-text";
     const pTwo = document.createElement("p");
     pTwo.className = "p-two";
-    pTwo.innerHTML = `${card.price} /шт`;
+    pTwo.innerHTML = `${card.price} &#8381;`;
     
     const button = document.createElement("button");
     button.className = "btn";
     button.innerHTML = "<p>в корзину</p>";
   
-    let cartCount = 0; 
-  
+    
     button.addEventListener('click', () => {
       cartCount++; 
       cartSpan.textContent = cartCount; 
