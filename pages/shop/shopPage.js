@@ -1,5 +1,9 @@
 // import { createHeader } from "../components/header";
 
+import lupaIcon from "../../images/section lupa.png";
+import cartIcon from "../../images/section korzina.png";
+import fireIcon from "../../images/fire icon.png";
+
 import wineImg from "../../images/024.jpg";
 import cardTwo from "../../images/003.jpg";
 import cardTree from "../../images/004.jpg";
@@ -14,32 +18,75 @@ import cardTvelve from "../../images/027.jpg";
 import cardEnd from "../../images/стейк-рибай.jpg";
 
 
-import "../../shop.css";
 
+import "../../shop.css";
 
 
 export function createShopPage() {
 
+  // Создание section
+  const section = document.createElement("section");
 
+  const inputDiv = document.createElement("div");
+  inputDiv.className = "section-input";
+  const input = document.createElement("input");
+  input.type = "text";
+  const lupaImg = document.createElement("img");
+  lupaImg.src = lupaIcon;
+  inputDiv.appendChild(input);
+  inputDiv.appendChild(lupaImg);
 
+  const cartDiv = document.createElement('div');
+  cartDiv.className = 'section-paragraph';
 
+  const cartSpan = document.createElement('span');
+  cartSpan.classList = 'section-span';
+  cartSpan.textContent = '0'; 
+  
+  const cartP = document.createElement('p');
+  cartP.classList = 'basketIcon';
+  
+  
+  const basketHrf = [{ text: 'Koрзина', href: 'basket' }]
+  basketHrf.forEach( link => {
+    const a = document.createElement('a');
+    a.href = link.href;
+    a.textContent = link.text;
+    cartP.appendChild(a);
+  });
+  
+  const cartImg = document.createElement('img');
+  
+  cartImg.src = cartIcon;
+  cartDiv.appendChild(cartP);
+  cartDiv.appendChild(cartImg);
+  cartDiv.appendChild(cartSpan);
+  
+  
+  const btnDiv = document.createElement("div");
+  btnDiv.className = "section-btn";
+  const button = document.createElement("button");
+  const fireImg = document.createElement("img");
+  fireImg.src = fireIcon;
+  button.appendChild(fireImg);
+  button.appendChild(document.createTextNode("АКЦИИ"));
+  btnDiv.appendChild(button);
+  
+  section.appendChild(inputDiv);
+  section.appendChild(cartDiv);
+  section.appendChild(btnDiv);
+  
+  
+  
+  // Создание main
+  
   const main = document.createElement("main");
   main.className = "main";
-
+  
   const cardContainer = document.createElement("div");
   cardContainer.className = "card-container";
-
-  // const wineImages = [
-    //   "/images/025.jpg",
-    //   "/images/003.jpg",
-    //   "/images/004.jpg",
-    //   "/images/009.jpg",
-    //   "/images/010.jpg",
-    //   "/images/011.jpg",
-    //   "/images/014.jpg",
-    //   // Добавьте сюда остальные пути к изображениям
-    // ];
-    
+  
+  
   const dataFut = [
     {
       title: "Стейк-Рибай",
@@ -115,6 +162,7 @@ export function createShopPage() {
     }
   ];
   
+  
   dataFut.forEach((card) => {
     const cardElement = document.createElement("div");
     cardElement.className = "card";
@@ -139,17 +187,25 @@ export function createShopPage() {
     pOne.textContent = card.discription;
     cardText.appendChild(h1);
     cardText.appendChild(pOne);
-
+    
     const btnText = document.createElement("div");
     btnText.className = "btn-text";
     const pTwo = document.createElement("p");
     pTwo.className = "p-two";
     pTwo.innerHTML = `${card.price} /шт`;
-
+    
     const button = document.createElement("button");
     button.className = "btn";
     button.innerHTML = "<p>в корзину</p>";
-
+  
+    let cartCount = 0; 
+  
+    button.addEventListener('click', () => {
+      cartCount++; 
+      cartSpan.textContent = cartCount; 
+      console.log(cartSpan);
+    });
+    
     btnText.appendChild(pTwo);
     btnText.appendChild(button);
 
@@ -158,8 +214,13 @@ export function createShopPage() {
     cardElement.appendChild(btnText);
 
     cardContainer.appendChild(cardElement);
+    main.appendChild(cardContainer);
   });
 
-  main.appendChild(cardContainer);
-  return main;
+
+  const pageShops = document.createElement('div');
+  pageShops.appendChild(section);
+  pageShops.appendChild(main);
+
+  return pageShops;
 }

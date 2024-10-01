@@ -26,20 +26,29 @@ export function createWelcomePage() {
 
   const cartDiv = document.createElement('div');
   cartDiv.className = 'section-paragraph';
+  
+  const cartSpan = document.createElement('span');
+  cartSpan.classList = 'section-span';
+  cartSpan.textContent = 0;
+  
   const cartP = document.createElement('p');
   cartP.classList = 'basketIcon';
-  const basketHrf = [{ text: 'Koрзина', href: 'basket.js' }]
+  
+  
+  const basketHrf = [{ text: 'Koрзина', href: 'basket' }]
   basketHrf.forEach( link => {
     const a = document.createElement('a');
     a.href = link.href;
     a.textContent = link.text;
     cartP.appendChild(a);
   });
+  
   const cartImg = document.createElement('img');
-
+  
   cartImg.src = cartIcon;
   cartDiv.appendChild(cartP);
   cartDiv.appendChild(cartImg);
+  cartDiv.appendChild(cartSpan);
 
   const btnDiv = document.createElement("div");
   btnDiv.className = "section-btn";

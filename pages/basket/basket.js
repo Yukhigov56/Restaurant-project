@@ -1,7 +1,10 @@
-const body = document.querySelector('body');
+import "../../basket.css";
 
-const div = document.createElement('div');
-div.textContent = 'Ilyas mashina';
+export function basketPage() {
+    const basketFood = document.createElement('div');
+    basketFood.classList = 'basket-food'
+    basketFood.innerHTML = 'SSSSSSSSSSSSSSSSSSSSSSSS';
 
 
-body.append(div);
+    return basketFood;
+}
