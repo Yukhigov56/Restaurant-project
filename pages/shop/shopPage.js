@@ -17,13 +17,9 @@ import cardEleven from "../../images/026.jpg";
 import cardTvelve from "../../images/027.jpg";
 import cardEnd from "../../images/стейк-рибай.jpg";
 
-
-
 import "../../shop.css";
 
-
 export function createShopPage() {
-
   // Создание section
   const section = document.createElement("section");
 
@@ -36,33 +32,31 @@ export function createShopPage() {
   inputDiv.appendChild(input);
   inputDiv.appendChild(lupaImg);
 
-  const cartDiv = document.createElement('div');
-  cartDiv.className = 'section-paragraph';
+  const cartDiv = document.createElement("div");
+  cartDiv.className = "section-paragraph";
 
-  const cartSpan = document.createElement('span');
-  cartSpan.classList = 'section-span';
-  cartSpan.textContent = '0'; 
-  
-  const cartP = document.createElement('p');
-  cartP.classList = 'basketIcon';
-  
-  
-  const basketHrf = [{ text: 'Koрзина', href: 'basket' }]
-  basketHrf.forEach( link => {
-    const a = document.createElement('a');
+  const cartSpan = document.createElement("span");
+  cartSpan.classList = "section-span";
+  cartSpan.textContent = "0";
+
+  const cartP = document.createElement("p");
+  cartP.classList = "basketIcon";
+
+  const basketHrf = [{ text: "Koрзина", href: "basket" }];
+  basketHrf.forEach((link) => {
+    const a = document.createElement("a");
     a.href = link.href;
     a.textContent = link.text;
     cartP.appendChild(a);
   });
-  
-  const cartImg = document.createElement('img');
-  
+
+  const cartImg = document.createElement("img");
+
   cartImg.src = cartIcon;
   cartDiv.appendChild(cartP);
   cartDiv.appendChild(cartImg);
   cartDiv.appendChild(cartSpan);
-  
-  
+
   const btnDiv = document.createElement("div");
   btnDiv.className = "section-btn";
   const button = document.createElement("button");
@@ -71,114 +65,123 @@ export function createShopPage() {
   button.appendChild(fireImg);
   button.appendChild(document.createTextNode("АКЦИИ"));
   btnDiv.appendChild(button);
-  
+
   section.appendChild(inputDiv);
   section.appendChild(cartDiv);
   section.appendChild(btnDiv);
-  
-  
-  
+
   // Создание main
-  
+
   const main = document.createElement("main");
   main.className = "main";
-  
+
   const cardContainer = document.createElement("div");
   cardContainer.className = "card-container";
-  
-  
+
   const dataFut = [
     {
       title: "Стейк-Рибай",
-      discription: "Это классика мраморного мяса, с которой так или иначе знаком каждый любитель сочной говядины.",
+      discription:
+        "Это классика мраморного мяса, с которой так или иначе знаком каждый любитель сочной говядины.",
       price: "25 999",
-      img: cardEnd
+      img: cardEnd,
     },
     {
       title: "Шницель натуральный",
-      discription: "Полуфабрикат из птицы, натуральный, кусковой бескостный, цельный кусок филе",
+      discription:
+        "Полуфабрикат из птицы, натуральный, кусковой бескостный, цельный кусок филе",
       price: "22 500",
       img: cardTwo,
     },
     {
       title: "Стейк из семги",
-      discription: 'Мясо и икра семги обладают питательной и вкусовой ценностью и относятся к деликатесам.',
-      price: '20 300',
-      img: cardTree
+      discription:
+        "Мясо и икра семги обладают питательной и вкусовой ценностью и относятся к деликатесам.",
+      price: "20 300",
+      img: cardTree,
     },
     {
       title: "Каммамбер запеченный",
-      discription: "Имеет сливочный вкус с легкой пикантностью. Подается с фокаччей, посыпанной орегано.",
+      discription:
+        "Имеет сливочный вкус с легкой пикантностью. Подается с фокаччей, посыпанной орегано.",
       price: "22 500",
-      img: cardFour
+      img: cardFour,
     },
     {
       title: "Салат Буре из телятины",
-      discription: "В основе салата, отборная телятина, которую маринуем в бальзамическом уксусе чесноке",
+      discription:
+        "В основе салата, отборная телятина, которую маринуем в бальзамическом уксусе чесноке",
       price: "22 500",
-      img: cardFive
+      img: cardFive,
     },
     {
       title: "Ассорти рыбное",
-      discription: "Составлено из аппетитных ломтиков радужной форели и масляной рыбы.",
+      discription:
+        "Составлено из аппетитных ломтиков радужной форели и масляной рыбы.",
       price: "17 200",
-      img: cardSix
+      img: cardSix,
     },
     {
       title: "Мильфей с кремом",
-      discription: "Мильфей, к сожалению, не слишком распространен в стране, но одна его ипостась знакома у нас всем.",
+      discription:
+        "Мильфей, к сожалению, не слишком распространен в стране, но одна его ипостась знакома у нас всем.",
       price: "19 300",
-      img: cardSeven
+      img: cardSeven,
     },
     {
       title: "Наполеон вишневый",
-      discription: "Этот постный десерт сочетает в себе изысканность классического «Наполеона» и сочные вишни.",
+      discription:
+        "Этот постный десерт сочетает в себе изысканность классического «Наполеона» и сочные вишни.",
       price: "22 300",
-      img: cardNine
+      img: cardNine,
     },
     {
       title: "Карамельная Фуа-Гра",
-      discription: "Фуа-гра считается одним из самых изысканных деликатесов в мире, из французской кухни.",
+      discription:
+        "Фуа-гра считается одним из самых изысканных деликатесов в мире, из французской кухни.",
       price: "17 999",
-      img: cardTen
+      img: cardTen,
     },
     {
       title: "Торт Эстерхази",
-      discription: "Это орехово-сливочный торт, популярный в Венгрии, Австрии и Германии. ",
+      discription:
+        "Это орехово-сливочный торт, популярный в Венгрии, Австрии и Германии. ",
       price: "10 999",
-      img: cardEleven
+      img: cardEleven,
     },
     {
       title: "Чизкей Нью-Йорк",
-      discription: "Настоящая американская классика нежный чизкейк из начинки с ванильной ноткой подложке.",
+      discription:
+        "Настоящая американская классика нежный чизкейк из начинки с ванильной ноткой подложке.",
       price: "10 999",
-      img: cardTvelve
+      img: cardTvelve,
     },
     {
       title: "Чилийский сибас",
-      discription: "Чилийский сибас — общепризнанно одна из самых вкусных рыб премиального сегмента",
+      discription:
+        "Чилийский сибас — общепризнанно одна из самых вкусных рыб премиального сегмента",
       price: "20 999",
       img: wineImg,
-    }
+    },
   ];
-  
-  let cartCount = 0; 
+
+  let cartCount = 0;
 
   dataFut.forEach((card) => {
     const cardElement = document.createElement("div");
     cardElement.className = "card";
-    
+
     const colImg = document.createElement("div");
     colImg.className = "col-img";
-    
+
     // Создаем элемент img внутри цикла
     const img = document.createElement("img");
-    
+
     img.src = card.img;
-    
+
     // Добавляем img в colImg
     colImg.appendChild(img);
-    
+
     const cardText = document.createElement("div");
     cardText.className = "card-text";
     const h1 = document.createElement("h1");
@@ -188,24 +191,30 @@ export function createShopPage() {
     pOne.textContent = card.discription;
     cardText.appendChild(h1);
     cardText.appendChild(pOne);
-    
+
     const btnText = document.createElement("div");
     btnText.className = "btn-text";
     const pTwo = document.createElement("p");
     pTwo.className = "p-two";
     pTwo.innerHTML = `${card.price} &#8381;`;
-    
+
     const button = document.createElement("button");
     button.className = "btn";
     button.innerHTML = "<p>в корзину</p>";
-  
-    
-    button.addEventListener('click', () => {
-      cartCount++; 
-      cartSpan.textContent = cartCount; 
+    button.style.backgroundColor = "var(--color-yellow)";
+
+    button.addEventListener("click", () => {
       console.log(cartSpan);
+      if (button.style.backgroundColor === "var(--color-yellow)") {
+        cartCount++;
+        button.style.backgroundColor = "green";
+      } else {
+        cartCount--;
+        button.style.backgroundColor = "var(--color-yellow)";
+      }
+      cartSpan.textContent = cartCount;
     });
-    
+
     btnText.appendChild(pTwo);
     btnText.appendChild(button);
 
@@ -217,8 +226,7 @@ export function createShopPage() {
     main.appendChild(cardContainer);
   });
 
-
-  const pageShops = document.createElement('div');
+  const pageShops = document.createElement("div");
   pageShops.appendChild(section);
   pageShops.appendChild(main);
 

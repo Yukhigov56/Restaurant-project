@@ -272,7 +272,6 @@ header {
   gap: 10px;
   width: 148px;
   height: 44px;
-  background-color: var(--color-yellow);
   color: var(--color-white);
   border: none;
   border-top-left-radius: 25px;
