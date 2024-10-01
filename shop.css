@@ -245,6 +245,7 @@ header {
   font-size: 18px;
   color: var(--color-gray);
   margin-top: 22px;
+  margin-bottom: 15px;
 }
 
 .p-two {

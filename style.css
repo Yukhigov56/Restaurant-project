@@ -332,3 +332,35 @@ footer ul li a {
 footer ul li:hover a {
   color: var(--color-yellow);
 }
+
+
+
+@media (max-width: 1461px) {
+  .header-left-name {
+    display: none;
+  }
+  header{
+    display: flex;
+    gap: 10px;
+    padding: 0;
+  }
+  .header-left ul {
+    display: flex;
+    list-style: none;
+    gap: 5px;
+    padding-left: 40px;
+  }
+  .header-right ul {
+    display: flex;
+    gap: 10px;
+  }
+  .header-right {
+    display: flex;
+    gap: 40px;
+  }
+  .header-right ul {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+  }
+}
