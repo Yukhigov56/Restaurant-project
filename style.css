@@ -17,7 +17,7 @@
   font-size: 85px;
   font-weight: bold;
   font-family: "Itim", cursive;
-  letter-spacing: 10px;
+  letter-spacing: 25px;
   color: var(--color-yellow);
 }
 
@@ -68,7 +68,7 @@ header {
 }
 .header-left li img:hover {
   background-color: var(--color-yellow);
-  transform: scale(1.09);
+  transform: scale(1.1);
 }
 
 .header-right {
@@ -123,7 +123,7 @@ section {
   width: 17px;
   position: absolute;
   top: 4px;
-  right: 10px;
+  right: 12px;
 }
 
 .section-paragraph {
@@ -179,7 +179,7 @@ main {
   color: rgb(159, 159, 159);
   white-space: nowrap; 
   overflow: hidden; 
-  animation: typing 5s forwards, changeWord 10s 5s forwards;
+  animation: typing 5s forwards, changeWord 11s 7s forwards;
 }
 
 @keyframes typing {
@@ -214,7 +214,7 @@ main {
   color: rgb(159, 159, 159);
   white-space: nowrap; 
   overflow: hidden; 
-  animation: typing 6s forwards, changeWord 10s 5s forwards;
+  animation: typing 6s forwards, changeWord 11s 7s forwards;
 }
 
 @keyframes typing {
@@ -314,7 +314,8 @@ main {
 }
 
 footer {
-  margin-top: 150px;
+  margin-top: 155px;
+  height: 40px;
 }
 footer ul {
   display: flex;
