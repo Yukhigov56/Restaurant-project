@@ -33,7 +33,7 @@ const setupNavigation = () => {
       e.preventDefault();
       router.navigate(path);
     });
-  });
+  })
 };
 
 // Функция инициализации приложения
