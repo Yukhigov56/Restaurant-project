@@ -6,8 +6,8 @@
   box-sizing: border-box;
   box-sizing: border-box;
   font-family: "Rubik", sans-serif;
-  -ms-overflow-style: none; 
-  scrollbar-width: none; 
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 :root {
@@ -274,7 +274,7 @@ header {
   border: none;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
-  cursor: pointer; 
+  cursor: pointer;
   transition: 0.5s;
 }
 
