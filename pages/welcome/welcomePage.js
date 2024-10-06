@@ -35,11 +35,12 @@ export function createWelcomePage() {
   cartP.classList = 'basketIcon';
   
   
-  const basketHrf = [{ text: 'Koрзина', href: 'basket' }]
+  const basketHrf = [{ id:'basketid', text: 'Koрзина', href: 'basket' }]
   basketHrf.forEach( link => {
     const a = document.createElement('a');
     a.href = link.href;
     a.textContent = link.text;
+    a.id = link.id;
     cartP.appendChild(a);
   });
   
