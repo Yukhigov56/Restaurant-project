@@ -27,38 +27,6 @@ import card20 from "../../images/bee.jpg";
 
 import "../../shop.css";
 
-// Функция для передачи данных карточки на страницу basket
-function exportCardData(cardData) {
-  // Создаем скрытый элемент iframe
-  const iframe = document.createElement('iframe');
-  iframe.style.display = 'none';
-
-  // Добавляем iframe в DOM
-  document.body.appendChild(iframe);
-
-  // Получаем объект window для iframe
-  const iframeWindow = iframe.contentWindow;
-
-  // Получаем текущий URL
-  const currentUrl = window.location.href;
-  // Заменяем часть URL на "basket"
-  const basketUrl = currentUrl.replace(/\/shop/, '/basket'); 
-
-  // Перенаправляем iframe на страницу basket
-  iframeWindow.location.href = basketUrl;
-
-  // Проверяем, была ли страница basket загружена
-  iframeWindow.addEventListener('load', () => {
-    // Получаем объект window для страницы basket
-    const basketWindow = iframeWindow.frames[0].window;
-
-    // Передаем данные карточки на страницу basket
-    basketWindow.cardData = cardData;
-
-    // Удаляем iframe из DOM
-    document.body.removeChild(iframe);
-  });
-}
 
 export function createShopPage() {
 
@@ -113,7 +81,55 @@ export function createShopPage() {
   section.appendChild(inputDiv);
   section.appendChild(cartDiv);
   section.appendChild(btnDiv);
+  
+  // Создание кнопки "Оплатить"
+  const payButton = document.createElement("button");
+  payButton.className = "pay-button";
+  payButton.textContent = "Оплатить";
+  
+  // Функция для подсчета общей стоимости выбранных товаров
+  
+  function calculateTotal() {
+    let total = 0;
+    const buttons = document.querySelectorAll('.btn');
+    
+    buttons.forEach(button => {
+      const cardElement = button.closest('.card');
+      const cardId = cardElement.id.split('-')[1];
+      const buttonState = localStorage.getItem(`buttonState-${cardId}`);
+      
+      if (buttonState === 'added') {
+        const priceElement = cardElement.querySelector('.p-two');
+        const priceText = priceElement.textContent; 
+        const price = parseFloat(priceText.replace(/[^0-9]/g, ''));
+        total += price;
+      }
+    });
+    
+    return total;
+  }
+  
+  // Обработчик события click для кнопки "Оплатить"
+  payButton.addEventListener('click', () => {
+    const total = calculateTotal();
+  
+    // Проверка, есть ли выбранные товары
+    if (total > 0) {
+      // Вывод сообщения с общей суммой
+      alert(`Общая стоимость выбранных товаров: ${total} &#8381;`);
+  
+      // ... (добавьте ваш код для обработки платежа) ...
+  
+      // Очистка корзины (добавьте логику очистки, если нужно)
+      // ... 
+    } else {
+      alert("В корзине нет товаров.");
+    }
+  });
 
+
+  // Добавление кнопки "Оплатить" в main
+  section.appendChild(payButton);
   
   // Создание main
   
@@ -290,18 +306,19 @@ export function createShopPage() {
 
   // Проверяем, есть ли данные в localStorage
 
-  if (localStorage.getItem("cartCount")) {
-    cartCount = parseInt(localStorage.getItem("cartCount"), 10);
-    cartSpan.textContent = cartCount;
+  if (localStorage.getItem('cartCount')) {
+    cartCount = parseInt(localStorage.getItem('cartCount'), 10); 
+    cartSpan.textContent = cartCount; 
   }
 
-  // Каждая карточка имеет data-titleатрибут, в котором хранится заголовок в нижнем регистре для удобства сопоставления.
+// Каждая карточка имеет data-titleатрибут, в котором хранится заголовок в нижнем регистре для удобства сопоставления.
 
   dataFut.forEach((card) => {
     const cardElement = document.createElement("div");
     cardElement.className = "card";
     cardElement.id = `card-${card.id}`;
     cardElement.dataset.title = card.title.toLowerCase();
+
 
     const colImg = document.createElement("div");
     colImg.className = "col-img";
@@ -333,102 +350,102 @@ export function createShopPage() {
     button.className = "btn";
     button.innerHTML = "<p>в корзину</p>";
     button.style.backgroundColor = "var(--color-yellow)";
-    button.classList = `hover:`
 
     const updateCart = () => {
-      cartCount = parseInt(localStorage.getItem("cartCount"), 10);
+      cartCount = parseInt(localStorage.getItem('cartCount'), 10);
       cartSpan.textContent = cartCount;
     };
 
+
+    
+
     // Получаем состояние кнопки из LocalStorage
-    let buttonState =
-      localStorage.getItem(`buttonState-${card.id}`) || "initial";
+    let buttonState = localStorage.getItem(`buttonState-${card.id}`) || 'initial'; 
+
 
     // Обработчик события click для кнопки
 
-    button.addEventListener("click", () => {
-      if (buttonState === "initial" || buttonState === "removed") {
-        // Добавление в корзину
+    button.addEventListener('click', () => {
+      if (buttonState === 'initial' || buttonState === 'removed') {
+
+    // Добавление в корзину
         cartCount++;
         button.style.backgroundColor = "#3a3a3a";
         button.textContent = "отменить выбор";
-        buttonState = "added";
-        cardContainer.prepend(cardElement);
-        localStorage.setItem(`buttonState-${card.id}`, "added");
+        buttonState = 'added';
+        cardContainer.prepend(cardElement); 
+        localStorage.setItem(`buttonState-${card.id}`, 'added');
       } else {
-        // Удаление из корзины
+
+    // Удаление из корзины
         cartCount--;
         button.style.backgroundColor = "var(--color-yellow)";
         button.textContent = "в корзину";
-        buttonState = "removed";
-        localStorage.setItem(`buttonState-${card.id}`, "removed");
+        buttonState = 'removed';
+        localStorage.setItem(`buttonState-${card.id}`, 'removed');
       }
 
-      localStorage.setItem("cartCount", cartCount);
+      localStorage.setItem('cartCount', cartCount);
       updateCart();
-
-      // Экспортируем данные карточки
-    exportCardData(card);
     });
 
     // Устанавливаем начальное состояние кнопки из LocalStorage
 
-    if (buttonState === "added") {
+    if (buttonState === 'added') {
       button.style.backgroundColor = "#3a3a3a";
       button.textContent = "отменить выбор";
     }
 
     btnText.appendChild(pTwo);
     btnText.appendChild(button);
-
+    
     cardElement.appendChild(colImg);
     cardElement.appendChild(cardText);
     cardElement.appendChild(btnText);
-
+    
     cardContainer.appendChild(cardElement);
-
+    
     main.appendChild(cardContainer);
   });
 
+
   // Функционал для инпута
 
-  input.addEventListener("input", () => {
+  input.addEventListener('input', () => {
     const query = input.value.toLowerCase(); // Получить входное значение
-    const cards = document.querySelectorAll(".card"); // Получить все элементы карты
+    const cards = document.querySelectorAll('.card'); // Получить все элементы карты
 
-    cards.forEach((card) => {
+    cards.forEach(card => {
       const title = card.dataset.title; // Получить заголовок из набора данных
       if (title.includes(query)) {
-        card.style.display = ""; // Показ карты
+        card.style.display = ''; // Показ карты
       } else {
-        card.style.display = "none"; // Скрыть карту
+        card.style.display = 'none'; // Скрыть карту
       }
     });
   });
 
+
   // При загрузке страницы, устанавливаем состояние кнопки
 
-  window.addEventListener("load", () => {
-    const buttons = document.querySelectorAll(".btn");
-    buttons.forEach((button) => {
-      // Проверяем, есть ли данные в localStorage для этой конкретной кнопки
+  window.addEventListener('load', () => {
+  const buttons = document.querySelectorAll('.btn');
+  buttons.forEach(button => {
 
-      if (localStorage.getItem(`buttonState-${button.textContent}`)) {
-        // Если есть, устанавливаем состояние кнопки в соответствии с данными из localStorage
+    // Проверяем, есть ли данные в localStorage для этой конкретной кнопки
 
-        button.style.backgroundColor = localStorage.getItem(
-          `buttonState-${button.textContent}`
-        );
-        button.textContent = localStorage.getItem(
-          `buttonText-${button.textContent}`
-        );
-      }
-    });
+    if (localStorage.getItem(`buttonState-${button.textContent}`)) {
+      // Если есть, устанавливаем состояние кнопки в соответствии с данными из localStorage
+
+      button.style.backgroundColor = localStorage.getItem(`buttonState-${button.textContent}`);
+      button.textContent = localStorage.getItem(`buttonText-${button.textContent}`);
+  }
+  });
   });
 
   const pageShops = document.createElement("div");
   pageShops.appendChild(section);
   pageShops.appendChild(main);
-
+  
   return pageShops;
 }
