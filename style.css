@@ -8,6 +8,12 @@
   font-family: "Rubik", sans-serif;
 }
 
+:root {
+  --color-white: #fff;
+  --color-yellow: #ff9100;
+  --color-gray: #73777d;
+}
+
 .loading {
   display: flex;
   justify-content: center;
@@ -19,12 +25,6 @@
   font-family: "Itim", cursive;
   letter-spacing: 25px;
   color: var(--color-yellow);
-}
-
-:root {
-  --color-white: #fff;
-  --color-yellow: #ff9100;
-  --color-gray: #73777d;
 }
 
 body {
@@ -328,19 +328,19 @@ footer ul li a {
   color: var(--color-gray);
   text-decoration: none;
   cursor: pointer;
-  position: relative; /* Add position relative for animation */
-  transition: color 0.4s ease-in-out; /* Add transition for smooth color change */
+  position: relative; 
+  transition: color 0.4s ease-in-out; 
 }
 
 footer ul li a::after {
   content: '';
   position: absolute;
-  bottom: -2px; /* Adjust vertical position of the underline */
+  bottom: -2px; 
   left: 0;
   width: 0;
   height: 2px;
   background-color: var(--color-yellow);
-  transition: width 0.4s ease-in-out; /* Add transition for smooth width change */
+  transition: width 0.4s ease-in-out; 
 }
 
 footer ul li a:hover {
@@ -348,10 +348,12 @@ footer ul li a:hover {
 }
 
 footer ul li a:hover::after {
-  width: 100%; /* Expand the underline on hover */
+  width: 100%; 
 }
 
 
+
+/* НЕ ДОДЕЛАНО */
 @media (max-width: 1461px) {
   .header-left-name {
     display: none;
@@ -469,8 +471,8 @@ footer ul li a:hover::after {
   }
 }
 
-
-@media (max-width: 430px) {
+/* НЕ ДОДЕЛАНО */
+@media (max-width: 430px) { 
   header ul{
     display: flex;
     flex-wrap: wrap;

@@ -13,6 +13,7 @@ import cardEnd from "../../images/стейк-рибай.jpg";
 
 import "../../basket.css";
 
+// const params = new URLSearchParams(window.location.search); const cardId = params.get('id');
 
 export function basketPage() {
   const main = document.createElement("main");
@@ -83,7 +84,6 @@ export function basketPage() {
     
     const button = document.createElement("button");
 
-  
     let cartCount = 0; 
   
     button.addEventListener('click', () => {
