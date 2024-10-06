@@ -4,7 +4,6 @@ import { Router } from "./router";
 import { renderPage } from "../utils/renderPage";
 import { basketPage } from "../pages/basket/basket";
 
-
 // Определяем маршруты в массиве
 const routes = [
   { path: "/", page: createWelcomePage },
