@@ -143,7 +143,7 @@ section {
   color: var(--color-yellow);
 }
 
-.section-btn button {
+.section-btn {
   display: flex;
   justify-content: center;
   align-items: center;

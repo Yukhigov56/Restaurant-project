@@ -19,41 +19,11 @@ import cardEnd from "../../images/стейк-рибай.jpg";
 
 import "../../shop.css";
 
-// Функция для передачи данных карточки на страницу basket
-function exportCardData(cardData) {
-  // Создаем скрытый элемент iframe
-  const iframe = document.createElement('iframe');
-  iframe.style.display = 'none';
-
-  // Добавляем iframe в DOM
-  document.body.appendChild(iframe);
-
-  // Получаем объект window для iframe
-  const iframeWindow = iframe.contentWindow;
-
-  // Получаем текущий URL
-  const currentUrl = window.location.href;
-  // Заменяем часть URL на "basket"
-  const basketUrl = currentUrl.replace(/\/shop/, '/basket'); 
-
-  // Перенаправляем iframe на страницу basket
-  iframeWindow.location.href = basketUrl;
-
-  // Проверяем, была ли страница basket загружена
-  iframeWindow.addEventListener('load', () => {
-    // Получаем объект window для страницы basket
-    const basketWindow = iframeWindow.frames[0].window;
-
-    // Передаем данные карточки на страницу basket
-    basketWindow.cardData = cardData;
-
-    // Удаляем iframe из DOM
-    document.body.removeChild(iframe);
-  });
-}
 
 export function createShopPage() {
+
   // Создание section
+
   const section = document.createElement("section");
 
   const inputDiv = document.createElement("div");
@@ -103,13 +73,61 @@ export function createShopPage() {
   section.appendChild(inputDiv);
   section.appendChild(cartDiv);
   section.appendChild(btnDiv);
+  
+  // Создание кнопки "Оплатить"
+  const payButton = document.createElement("button");
+  payButton.className = "pay-button";
+  payButton.textContent = "Оплатить";
+  
+  // Функция для подсчета общей стоимости выбранных товаров
+  
+  function calculateTotal() {
+    let total = 0;
+    const buttons = document.querySelectorAll('.btn');
+    
+    buttons.forEach(button => {
+      const cardElement = button.closest('.card');
+      const cardId = cardElement.id.split('-')[1];
+      const buttonState = localStorage.getItem(`buttonState-${cardId}`);
+      
+      if (buttonState === 'added') {
+        const priceElement = cardElement.querySelector('.p-two');
+        const priceText = priceElement.textContent; 
+        const price = parseFloat(priceText.replace(/[^0-9]/g, ''));
+        total += price;
+      }
+    });
+    
+    return total;
+  }
+  
+  // Обработчик события click для кнопки "Оплатить"
+  payButton.addEventListener('click', () => {
+    const total = calculateTotal();
+  
+    // Проверка, есть ли выбранные товары
+    if (total > 0) {
+      // Вывод сообщения с общей суммой
+      alert(`Общая стоимость выбранных товаров: ${total} &#8381;`);
+  
+      // ... (добавьте ваш код для обработки платежа) ...
+  
+      // Очистка корзины (добавьте логику очистки, если нужно)
+      // ... 
+    } else {
+      alert("В корзине нет товаров.");
+    }
+  });
 
+
+  // Добавление кнопки "Оплатить" в main
+  section.appendChild(payButton);
   
   // Создание main
-
+  
   const main = document.createElement("main");
   main.className = "main";
-
+  
   const cardContainer = document.createElement("div");
   cardContainer.className = "card-container";
 
@@ -260,6 +278,7 @@ export function createShopPage() {
     button.className = "btn";
     button.innerHTML = "<p>в корзину</p>";
     button.style.backgroundColor = "var(--color-yellow)";
+    button.classList = `hover:`
 
     const updateCart = () => {
       cartCount = parseInt(localStorage.getItem('cartCount'), 10);
@@ -297,9 +316,6 @@ export function createShopPage() {
 
       localStorage.setItem('cartCount', cartCount);
       updateCart();
-
-      // Экспортируем данные карточки
-    exportCardData(card);
     });
 
     // Устанавливаем начальное состояние кнопки из LocalStorage
@@ -355,7 +371,7 @@ export function createShopPage() {
   }
   });
   });
-  
+
   const pageShops = document.createElement("div");
   pageShops.appendChild(section);
   pageShops.appendChild(main);
