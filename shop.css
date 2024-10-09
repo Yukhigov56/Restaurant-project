@@ -307,4 +307,5 @@ footer ul li a {
 }
 footer ul li:hover a {
   color: var(--color-yellow);
+  font-size: 19px;
 }
