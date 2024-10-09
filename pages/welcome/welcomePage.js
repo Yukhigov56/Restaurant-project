@@ -12,12 +12,14 @@ import vineImg from "../../images/MainVine.png";
 import "../../style.css";
 
 export function createWelcomePage() {
+  
   // Создание section
   const section = document.createElement("section");
 
   const inputDiv = document.createElement("div");
   inputDiv.className = "section-input";
   const input = document.createElement("input");
+  input.placeholder = "Поиск по названию...";
   input.type = "text";
   const lupaImg = document.createElement("img");
   lupaImg.src = lupaIcon;
@@ -33,16 +35,7 @@ export function createWelcomePage() {
   
   const cartP = document.createElement('p');
   cartP.classList = 'basketIcon';
-  
-  
-  const basketHrf = [{ id:'basketid', text: 'Koрзина', href: 'basket' }]
-  basketHrf.forEach( link => {
-    const a = document.createElement('a');
-    a.href = link.href;
-    a.textContent = link.text;
-    a.id = link.id;
-    cartP.appendChild(a);
-  });
+  cartP.textContent= 'Корзина';
   
   const cartImg = document.createElement('img');
   

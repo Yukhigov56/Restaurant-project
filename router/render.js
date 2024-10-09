@@ -2,13 +2,11 @@ import { createWelcomePage } from "../pages/welcome/welcomePage";
 import { createShopPage } from "../pages/shop/shopPage";
 import { Router } from "./router";
 import { renderPage } from "../utils/renderPage";
-import { basketPage } from "../pages/basket/basket";
 
 // Определяем маршруты в массиве
 const routes = [
   { path: "/", page: createWelcomePage },
   { path: "/shop", page: createShopPage },
-  { path: "/basket", page: basketPage },
 ];
 
 const router = new Router();

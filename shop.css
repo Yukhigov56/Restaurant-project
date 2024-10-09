@@ -131,13 +131,24 @@ header {
   background-color: white;
 }
 
+.basketIcon:hover {
+  color: var(--color-yellow);
+  cursor: pointer;
+}
+
 .pay-button {
+  display: none;
   width: 120px;
   height: 40px;
+  font-size: 15px;
   font-weight: 600;
   border-radius: 20px;
   border: none;
   background-color: var(--color-yellow);
+  transition: 0.4s ease;
+}
+.pay-button:hover {
+  opacity: 0.7;
 }
 
 .choice ul {
@@ -206,7 +217,7 @@ header {
   justify-content: center;
   flex-wrap: wrap;
   gap: 18px;
-  margin: 0px 30px 0px;
+  margin: 60px 30px 0px;
   overflow-y: auto; /* Скрываем прокрутку по умолчанию */
 }
 
@@ -278,10 +289,6 @@ header {
   transition: 0.5s;
 }
 
-.btn:hover {
-  background-color: rgb(46, 44, 44);
-}
-
 .btn img {
   margin-top: 4px;
 }
@@ -300,4 +307,5 @@ footer ul li a {
 }
 footer ul li:hover a {
   color: var(--color-yellow);
+  font-size: 19px;
 }

@@ -1,5 +1,3 @@
-// import { createHeader } from "../components/header";
-
 import lupaIcon from "../../images/section lupa.png";
 import cartIcon from "../../images/section korzina.png";
 import fireIcon from "../../images/fire icon.png";
@@ -53,14 +51,7 @@ export function createShopPage() {
 
   const cartP = document.createElement("p");
   cartP.classList = "basketIcon";
-
-  const basketHrf = [{ text: "Koрзина", href: "basket" }];
-  basketHrf.forEach((link) => {
-    const a = document.createElement("a");
-    a.href = link.href;
-    a.textContent = link.text;
-    cartP.appendChild(a);
-  });
+  cartP.textContent = 'Koрзина';
 
   const cartImg = document.createElement("img");
 
@@ -68,25 +59,24 @@ export function createShopPage() {
   cartDiv.appendChild(cartP);
   cartDiv.appendChild(cartImg);
   cartDiv.appendChild(cartSpan);
-
-  const btnDiv = document.createElement("div");
-  btnDiv.className = "section-btn";
+  
   const button = document.createElement("button");
   const fireImg = document.createElement("img");
   fireImg.src = fireIcon;
   button.appendChild(fireImg);
   button.appendChild(document.createTextNode("АКЦИИ"));
-  btnDiv.appendChild(button);
 
   section.appendChild(inputDiv);
   section.appendChild(cartDiv);
-  section.appendChild(btnDiv);
   
   // Создание кнопки "Оплатить"
   const payButton = document.createElement("button");
   payButton.className = "pay-button";
   payButton.textContent = "Оплатить";
   
+  // Добавление кнопки "Оплатить" в main
+    section.appendChild(payButton);
+
   // Функция для подсчета общей стоимости выбранных товаров
   
   function calculateTotal() {
@@ -111,34 +101,32 @@ export function createShopPage() {
   
   // Обработчик события click для кнопки "Оплатить"
   payButton.addEventListener('click', () => {
+    
+    // Получаем данные о корзине из LocalStorage
+    const cartData = localStorage.getItem('cartCount');
     const total = calculateTotal();
   
     // Проверка, есть ли выбранные товары
     if (total > 0) {
+
       // Вывод сообщения с общей суммой
-      alert(`Общая стоимость выбранных товаров: ${total} &#8381;`);
-  
-      // ... (добавьте ваш код для обработки платежа) ...
-  
-      // Очистка корзины (добавьте логику очистки, если нужно)
-      // ... 
+      alert(`Общая сумма: ${total}р`);
     } else {
-      alert("В корзине нет товаров.");
+      alert("Вы ничего не выбрали");
     }
   });
 
 
-  // Добавление кнопки "Оплатить" в main
-  section.appendChild(payButton);
   
   // Создание main
-  
   const main = document.createElement("main");
   main.className = "main";
   
   const cardContainer = document.createElement("div");
   cardContainer.className = "card-container";
 
+
+  // Карточки меню
   const dataFut = [
     {
       id: 1,
@@ -254,7 +242,7 @@ export function createShopPage() {
     },
     {
       id: 15,
-      title: "Cалат с помидорами",
+      title: "Салат с помидорами",
       discription:
         "Настоящая американская классика нежный чизкейк из начинки с ванильной ноткой подложке.",
       price: "10 999",
@@ -302,16 +290,17 @@ export function createShopPage() {
     },
   ];
 
+  // Корзина
   let cartCount = 0;
 
   // Проверяем, есть ли данные в localStorage
-
+  
   if (localStorage.getItem('cartCount')) {
     cartCount = parseInt(localStorage.getItem('cartCount'), 10); 
     cartSpan.textContent = cartCount; 
   }
 
-// Каждая карточка имеет data-titleатрибут, в котором хранится заголовок в нижнем регистре для удобства сопоставления.
+// Каждая карточка имеет data-title атрибут, в котором хранится заголовок в нижнем регистре для удобства сопоставления.
 
   dataFut.forEach((card) => {
     const cardElement = document.createElement("div");
@@ -368,22 +357,35 @@ export function createShopPage() {
     button.addEventListener('click', () => {
       if (buttonState === 'initial' || buttonState === 'removed') {
 
-    // Добавление в корзину
+        // Добавление в корзину
+
         cartCount++;
         button.style.backgroundColor = "#3a3a3a";
         button.textContent = "отменить выбор";
         buttonState = 'added';
-        cardContainer.prepend(cardElement); 
+        cardContainer.prepend(cardElement);
         localStorage.setItem(`buttonState-${card.id}`, 'added');
+
+        // Проверяем, есть ли товары в корзине
+
+        if (cartCount >= 1) {
+          payButton.style.display = 'block'; // Показываем кнопку "Оплатить"
+        }
       } else {
 
-    // Удаление из корзины
+        // Удаление из корзины
         cartCount--;
         button.style.backgroundColor = "var(--color-yellow)";
         button.textContent = "в корзину";
         buttonState = 'removed';
         localStorage.setItem(`buttonState-${card.id}`, 'removed');
+
+        // Проверяем, есть ли товары в корзине
+        if (cartCount === 0) {
+          payButton.style.display = 'none'; // Скрываем кнопку "Оплатить"
+        }
       }
+      
 
       localStorage.setItem('cartCount', cartCount);
       updateCart();

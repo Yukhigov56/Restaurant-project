@@ -31,8 +31,15 @@ body {
   background-color: #16181b;
 }
 
+#app {
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
 header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: end;
   align-items: center;
   gap: 180px;
@@ -54,6 +61,7 @@ header {
 
 .header-left ul {
   display: flex;
+  flex-wrap: wrap;
   list-style: none;
   gap: 15px;
 }
@@ -99,6 +107,7 @@ header {
 }
 
 section {
+  height: 40px;
   margin: 20px 50px 30px 0px;
   display: flex;
   justify-content: end;
@@ -143,7 +152,7 @@ section {
   color: var(--color-yellow);
 }
 
-.section-btn {
+.section-btn button{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -164,6 +173,7 @@ section {
 main {
   display: flex;
   justify-content: space-between;
+  margin-top: 30px;
 }
 
 .main-left {
@@ -314,9 +324,13 @@ main {
 }
 
 footer {
-  margin-top: 155px;
+  position: absolute;
+  bottom: 0;
+  margin: auto;
   height: 40px;
+  width: 100%;
 }
+
 footer ul {
   display: flex;
   justify-content: center;
@@ -352,32 +366,14 @@ footer ul li a:hover::after {
 }
 
 
-
 /* НЕ ДОДЕЛАНО */
 @media (max-width: 1461px) {
+  .header-left {
+    display: none;
+  }
   .header-left-name {
     display: none;
   }
-  header ul{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 0;
-  }
-  .header-left ul {
-    display: flex;
-    list-style: none;
-    gap: 10px;
-    padding-left: 40px;
-  }
-  .header-left li {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: var(--color-gray);
-    transition: 0.3s ease-in-out;
-    cursor: pointer;
-  }
   .header-right ul {
     display: flex;
     gap: 10px;
@@ -389,12 +385,12 @@ footer ul li a:hover::after {
   }
   .header-right {
     display: flex;
-    gap: 20px;
+    gap: 10px;
   }
   .header-right ul {
     display: flex;
     list-style: none;
-    gap: 10px;
+    gap: 5px;
   }
   section {
     margin: 20px 50px 30px 0px;
@@ -410,48 +406,22 @@ footer ul li a:hover::after {
     letter-spacing: 1px;
     color: var(--color-gray);
   }
-  .section-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    font-size: 15px;
-    width: 100px;
-    height: 30px;
+
+  .section-btn button{
+    font-size: 14px;
   }
-  .main-left {
-    margin-top: 235px;
+  .section-btn img {
+    height: 21px;
   }
-  .main-left h1 {
-    width: 450px;
-    margin: 0 0 10px 50px;
-    font-size: 42px;
-    color: rgb(159, 159, 159);
-    white-space: nowrap; 
-    overflow: hidden; 
-    animation: typing 5s forwards, changeWord 11s 7s forwards;
-  }
-  .main-left h2 {
-    margin-left: 50px ;
-    font-size: 42px;
-    color: rgb(159, 159, 159);
-    white-space: nowrap; 
-    overflow: hidden; 
-    animation: typing 6s forwards, changeWord 11s 7s forwards;
-  }
-  .main-left p {
-    margin: 40px 0px 35px 150px;
-    font-size: 15px;
-    color: var(--color-yellow);
-    position: relative;
-  }
+
+
   .btn-main-left {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 15px;
     height: 70px;
-    width: 300px;
+    width: 250px;
     letter-spacing: 2px;
     font-size: 13px;
     font-weight: 600;
@@ -460,128 +430,72 @@ footer ul li a:hover::after {
     border: none;
     cursor: pointer;
   }
-  .main-right ul img{
-    display: flex;
-    gap: 20px;
-    height: 520px;
+  .main-left h1 {
+    font-size: 42px;
+  }
+  .main-left h2 {
+    font-size: 42px;
+  }
+  .main-left p {
+    font-size: 15px;
+  }
+  .main-right {
+    margin-left: 150px;
+  }
+  .main-right img {
+    height: 560px;
   }
   footer {
-    margin-top: 130px;
-    height: 40px;
+    margin-top: 170px;
   }
+
 }
 
 /* НЕ ДОДЕЛАНО */
-@media (max-width: 430px) { 
-  header ul{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 0;
+@media (max-width: 450px) { 
+  .header-left ul{
+    display: none;
   }
-  .header-left ul {
-    display: flex;
-    list-style: none;
-    gap: 10px;
-    padding-left: 40px;
-  }
-  .header-left li {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: var(--color-gray);
-    transition: 0.3s ease-in-out;
-    cursor: pointer;
-  }
-  .header-right ul {
-    display: flex;
-    gap: 10px;
-  }
-  .header-right ul li {
-    font-size: 16px;
+  .header-right li {
+    font-size: 14px;
     letter-spacing: 1px;
     cursor: pointer;
   }
-  .header-right {
-    display: flex;
-    gap: 20px;
+  .section-input input {
+    display: none;
   }
-  .header-right ul {
-    display: flex;
-    list-style: none;
-    gap: 10px;
+  .section-input img {
+    display: none;
   }
-  section {
-    margin: 20px 50px 30px 0px;
-    display: flex;
-    justify-content: end;
-    gap: 30px;
-  }
-  .section-paragraph {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 15px;
-    letter-spacing: 1px;
-    color: var(--color-gray);
-  }
-  .section-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    font-size: 15px;
-    width: 100px;
-    height: 30px;
+  main {
+    flex-direction: column;
+    margin-top: 0px;
   }
   .main-left {
-    margin-top: 235px;
+    margin-top: 50px;
   }
   .main-left h1 {
-    width: 450px;
-    margin: 0 0 10px 50px;
-    font-size: 42px;
-    color: rgb(159, 159, 159);
-    white-space: nowrap; 
-    overflow: hidden; 
-    animation: typing 5s forwards, changeWord 11s 7s forwards;
+    font-size: 38px;
   }
   .main-left h2 {
-    margin-left: 50px ;
-    font-size: 42px;
-    color: rgb(159, 159, 159);
-    white-space: nowrap; 
-    overflow: hidden; 
-    animation: typing 6s forwards, changeWord 11s 7s forwards;
-  }
-  .main-left p {
-    margin: 40px 0px 35px 150px;
-    font-size: 15px;
-    color: var(--color-yellow);
-    position: relative;
+    font-size: 38px;
   }
   .btn-main-left {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    height: 70px;
-    width: 300px;
-    letter-spacing: 2px;
-    font-size: 13px;
-    font-weight: 600;
-    background-color: var(--color-yellow);
-    border-radius: 0 15px 15px 0;
-    border: none;
-    cursor: pointer;
+    display: none;
+  }
+  .main-right {
+    margin: 20px 0px 20px 20px;
   }
   .main-right ul img{
-    display: flex;
-    gap: 20px;
-    height: 520px;
+    height: 300px;
   }
   footer {
-    margin-top: 130px;
-    height: 40px;
+    margin-top: 110px;
+  }
+  footer ul {
+    gap: 10px;
+  }
+  footer ul li a {
+    font-size: 14px;
   }
 }
